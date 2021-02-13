@@ -1,11 +1,10 @@
 import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 
-export function RestaurantOption(props) {
-    const { data } = props
+export function RestaurantOption({data, navigation}) {
     return (
         <View style={style.option}>
-            <Text >{data.restaurant.label}</Text>
+            <Text onPress={()=> navigation.navigate('Details', data[1])} >{data[0]}</Text>
         </View>
     )
 }
@@ -15,7 +14,8 @@ const style = StyleSheet.create({
     option: {
         borderWidth: 1,
         marginBottom: 10,
-        flex: 1,
+        paddingTop:20,
+        paddingBottom:20,
         borderRadius: 10,
     }
 })

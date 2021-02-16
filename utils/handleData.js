@@ -11,3 +11,13 @@ export function groupDataByLabel(data){
 
     return grouped_data
 }
+
+
+export function fieldData(field, answers){
+    for(let answer of answers){
+        if (answer.field.ref === field) {
+            return answer[answer.type]
+        }
+    }
+    return null
+}

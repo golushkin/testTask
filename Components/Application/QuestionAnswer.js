@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
+import pT from 'prop-types'
 
-
-export function QuestionAnswer({question, answer}) {
+export function QuestionAnswer({question, answer, questionParam}) {
     let answerText = ''
+    const questionTitle = questionParam?question.title.replace(/{{.*?}}/,questionParam):question.title
 
     if (answer.type === 'choices') {
         answerText = answer.choices.labels.join(',')
@@ -17,8 +18,8 @@ export function QuestionAnswer({question, answer}) {
 
     return (
         <View style={style.container}>
-            <Text>{question.title}</Text>
-            <Text>-{answerText}</Text>
+            <Text>Question: {questionTitle}</Text>
+            <Text>Answer: {answerText}</Text>
         </View>
     )
 }
@@ -32,3 +33,9 @@ const style = StyleSheet.create({
         backgroundColor: '#fff'
     }
 })
+
+QuestionAnswer.propTypes = {
+    answer: pT.object.isRequired,
+    question: pT.object.isRequired,
+    questionParam: pT.string,
+}

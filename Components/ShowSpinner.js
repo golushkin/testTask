@@ -1,6 +1,6 @@
 import React from 'react'
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native'
-
+import pT from 'prop-types'
 
 export function ShowSpinner({ showSpinner }) {
     if (!showSpinner) return null
@@ -19,3 +19,7 @@ const style = StyleSheet.create({
         alignItems: 'center'
     },
 })
+
+ShowSpinner.propTypes = {
+    showSpinner: pT.bool.isRequired
+}

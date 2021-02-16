@@ -1,26 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Text, StyleSheet, View } from 'react-native'
 import { Application } from '../Application/Application'
-import { StoreContext } from '../../StoreContext'
+import pT from 'prop-types'
 
 export function RestaurantOptionDetails({ route, navigation }) {
-    const context = useContext(StoreContext)
-    const restKey = route.params[0]
-    const applications = route.params[1]
-    const visitedApplications = context.store.applications[restKey]
+    const { restKey } = route.params
+    const applications = useSelector(store => store.data[restKey])
 
     function renderApplications() {
-        if (visitedApplications) {
-            return applications.map(el => {
-                const checked = visitedApplications.includes(el.id)
-                return <Application key={el.id} id={el.id} restKey={restKey} data={el.form_response} checked={checked} navigation={navigation} />
-            })
-        }
-        return applications.map(el => <Application key={el.id}
-            id={el.id}
-            restKey={restKey} 
-            data={el.form_response}
-            navigation={navigation} />)
+        return applications.map((el,index) => {
+            const checked = el.visited === true
+            return <Application key={el.id} index={index} restKey={restKey} data={el} checked={checked} navigation={navigation} />
+        })
     }
 
     return (
@@ -38,3 +30,9 @@ const style = StyleSheet.create({
         backgroundColor: '#fff'
     }
 })
+
+
+RestaurantOptionDetails.propTypes = {
+    route: pT.object.isRequired,
+    navigation: pT.object.isRequired,
+}

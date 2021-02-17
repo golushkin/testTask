@@ -3,17 +3,15 @@ import { Text, StyleSheet, View } from 'react-native'
 import pT from 'prop-types'
 
 export function RestaurantOption({ data, navigation }) {
-    const restName = data[1][0].restaurant.label
-    const applications = data[1]
-
+    const [restKey, restaurant] = data
     function navigateToDetails() {
-        navigation.navigate('Details', { restKey: data[0], restName})
+        navigation.navigate('Details', { restKey, restName: restaurant.restName})
     }
 
     return (
         <View style={style.option}>
-            <Text onPress={navigateToDetails} >{restName}</Text>
-            <Text>Number of applications: {applications.length}</Text>
+            <Text onPress={navigateToDetails} >{restaurant.restName}</Text>
+            <Text>Number of applications: {restaurant.appLength}</Text>
         </View>
     )
 }

@@ -4,21 +4,20 @@ import pT from 'prop-types'
 
 export function QuestionAnswer({ question, answer, questionParam }) {
     let answerText = ''
-    const questionTitle = questionParam ? question.title.replace(/{{.*?}}/, questionParam) : question.title
-
+    
     if (answer.type === 'choices') {
         answerText = answer.choices.labels.join(',')
     }
     else if (answer.type === 'choice') {
-        answerText = answer.choice.label
+        answerText = answer.choice
     }
     else {
-        answerText = answer[answer.type]
+        answerText = answer.answer
     }
 
     return (
         <View style={style.container}>
-            <Text>Question: {questionTitle}</Text>
+            <Text>Question: {question.title}</Text>
             <Text>Answer: {answerText}</Text>
         </View>
     )

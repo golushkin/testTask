@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import { ShowSpinner } from '../ShowSpinner'
 import { Request } from '../../utils/requests'
-import { groupDataByLabel } from '../../utils/handleData'
+import { getHandledData } from '../../utils/handleData'
 import { RestaurantOption } from './RestaurantOption'
 import { addRestaurants } from '../../store/actions/dataActions'
 import { addError } from '../../store/actions/errorsActions'
@@ -18,7 +18,7 @@ export function Restaurants({ navigation }) {
         const req = new Request()
         req.get_data()
             .then(data => {
-                dispatch(addRestaurants(groupDataByLabel(data)))
+                dispatch(addRestaurants(getHandledData(data)))
                 setSpinner(false)
             })
             .catch(err => dispatch(addError('Error on loading data')))
@@ -31,7 +31,7 @@ export function Restaurants({ navigation }) {
     return (
         <View style={style.containerView}>
             <ShowSpinner showSpinner={showSpinner}/>
-            <ScrollView contentContainerStyle={style.containerView}>
+            <ScrollView>
                 {renderRestaurantOptions()}
             </ScrollView>
         </View>
@@ -41,9 +41,6 @@ export function Restaurants({ navigation }) {
 
 
 const style = StyleSheet.create({
-    scrollView: {
-        flex: 1,
-    },
     spinner:{
         flex:1,
         justifyContent: 'center',

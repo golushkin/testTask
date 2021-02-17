@@ -8,9 +8,9 @@ export function dataReducer(store = {}, action){
             return {...store, ...pl}
     
         case data.VISITED_APP:
-            const arr = [...store[pl.restKey]]
-            arr[pl.index].visited = true
-            return {...store, [pl.restKey]:arr}
+            const restaurant = store[pl.restKey].clone()
+            restaurant.setAppVisited(pl.index, true)
+            return {...store, [pl.restKey]:restaurant}
         default:
             return {...store}
     }

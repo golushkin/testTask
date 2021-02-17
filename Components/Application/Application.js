@@ -4,23 +4,21 @@ import { useDispatch } from 'react-redux'
 import { visitedApplication } from '../../store/actions/dataActions'
 import pT from 'prop-types'
 
-export function Application({ data, navigation, restKey, checked, index }) {
+export function Application({ app, navigation, restKey, index }) {
     const dispatch = useDispatch()
-    const submittedAt = new Date(data.form_response.submitted_at).toDateString()
-    const firstName = data.form_response.answers[0].text
-    const lastName = data.form_response.answers[1].text
-
+    const fullName = app.getFullName()
+    
     function navigateToAppDetails() {
-        if (!checked) dispatch(visitedApplication(restKey, index))
-        navigation.navigate('AppDetails', {restKey, index, fullName: `${firstName} ${lastName}`})
+        if (!app.visited) dispatch(visitedApplication(restKey, index))
+        navigation.navigate('AppDetails', {restKey, index, fullName})
     }
 
-    const haveYouSeenApp = checked ? "have" : "haven't"
+    const haveYouSeenApp = app.visited ? "have" : "haven't"
 
     return (
         <View style={style.option}>
-            <Text onPress={navigateToAppDetails}>Application from {`${firstName} ${lastName}`}</Text>
-            <Text>Submitted at {submittedAt}</Text>
+            <Text onPress={navigateToAppDetails}>Application from {fullName}</Text>
+            <Text>Submitted at {app.getDate()}</Text>
             <Text>{`You ${haveYouSeenApp} seen this application`}</Text>
         </View>
     )
@@ -38,9 +36,8 @@ const style = StyleSheet.create({
 
 
 Application.propTypes = {
-    data: pT.object.isRequired,
+    app: pT.object.isRequired,
     navigation: pT.object.isRequired,
     restKey: pT.string.isRequired,
-    checked: pT.bool,
     index: pT.number.isRequired,
 }

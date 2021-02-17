@@ -6,13 +6,14 @@ import pT from 'prop-types'
 
 export function RestaurantOptionDetails({ route, navigation }) {
     const { restKey } = route.params
-    const applications = useSelector(store => store.data[restKey])
+    const restaurant = useSelector(store => store.data[restKey])
 
     function renderApplications() {
-        return applications.map((el,index) => {
-            const checked = el.visited === true
-            return <Application key={el.id} index={index} restKey={restKey} data={el} checked={checked} navigation={navigation} />
-        })
+        return restaurant.getApplications().map((app,index) => <Application key={app.id} 
+                                                            index={index} 
+                                                            restKey={restKey} 
+                                                            app={app} 
+                                                            navigation={navigation} />)
     }
 
     return (

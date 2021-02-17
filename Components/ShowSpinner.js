@@ -6,7 +6,7 @@ export function ShowSpinner({ showSpinner }) {
     if (!showSpinner) return null
     return (
         <View style={style.spinner}>
-            {showSpinner && <ActivityIndicator size='large' />}
+            {showSpinner && <ActivityIndicator color="#0000ff" size='large' />}
         </View>
     )
 }

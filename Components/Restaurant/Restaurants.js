@@ -29,7 +29,7 @@ export function Restaurants({ navigation }) {
     }
 
     return (
-        <View onResponderMove={(e)=>console.log(2)} style={style.containerView}>
+        <View style={style.containerView}>
             <ShowSpinner showSpinner={showSpinner}/>
             <ScrollView contentContainerStyle={style.containerView}>
                 {renderRestaurantOptions()}

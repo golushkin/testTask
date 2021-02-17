@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import pT from 'prop-types'
 
-export function QuestionAnswer({question, answer, questionParam}) {
+export function QuestionAnswer({ question, answer, questionParam }) {
     let answerText = ''
-    const questionTitle = questionParam?question.title.replace(/{{.*?}}/,questionParam):question.title
+    const questionTitle = questionParam ? question.title.replace(/{{.*?}}/, questionParam) : question.title
 
     if (answer.type === 'choices') {
         answerText = answer.choices.labels.join(',')
     }
-    else if(answer.type === 'choice'){
+    else if (answer.type === 'choice') {
         answerText = answer.choice.label
     }
-    else{
+    else {
         answerText = answer[answer.type]
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import { ScrollView } from 'react-native-gesture-handler'

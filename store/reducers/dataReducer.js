@@ -1,15 +1,5 @@
 import { data } from '../types'
 
-/*
-{
-    restName:[ applications
-        {
-            data + visited
-        }
-    ],
-}
-*/
-
 export function dataReducer(store = {}, action){
     const pl = action.payload
 

@@ -1,10 +1,10 @@
 export class Answer{
-    constructor(props){
-        this._answer = props.answer
-        this._type = props.type
-        this._ref = props.ref
-        this._choice = props.choice
-        this._choices = props.choices
+    constructor({answer,type,ref,choice,choices}){
+        this._answer = answer
+        this._type = type
+        this._ref = ref
+        this._choice = choice
+        this._choices = choices
     }
 
     get type(){

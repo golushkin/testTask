@@ -1,10 +1,9 @@
 export class Application{
-    constructor(props){
-        this._index = props.index
-        this._submittedAt = props.submittedAt
+    constructor({submittedAt, id}){
+        this._submittedAt = submittedAt
         this._fields = []
         this._visited = false,
-        this._id = props.id
+        this._id = id
     }
 
     get visited(){

@@ -1,9 +1,9 @@
 export class Question{
-    constructor(props){
-        this._title = props.title
-        this._type = props.type
-        this._ref = props.ref
-        this._choices = props.choices
+    constructor({title, type, ref, choices}){
+        this._title = title
+        this._type = type
+        this._ref = ref
+        this._choices = choices
     }
 
     get title(){

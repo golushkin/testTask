@@ -1,9 +1,8 @@
 export class Restaurant{
-    constructor(props){
-        this._restName = props.restName
-        this._index = props.index || null
-        this._applications = props.applications || []
-        this._restKey = props.restKey
+    constructor({restName, applications = [], restKey}){
+        this._restName = restName
+        this._applications = applications
+        this._restKey = restKey
     }
 
     get restName(){
